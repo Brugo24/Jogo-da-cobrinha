@@ -11,14 +11,14 @@ Este projeto foi construído durante a graduação em Ciência da Computação (
 * **Condição de Vitória:** O jogador vence ao preencher a tela/atingir o tamanho máximo.
 * **Sistema de Pausa:** É possível pausar o jogo a qualquer momento.
 
-## 🧠 A Lógica por trás (Matriz de Coordenadas)
+## 🧠 A Lógica por trás (Vetores Paralelos)
 
-O "motor" do jogo funciona através do mapeamento do terminal usando uma **Matriz Bidimensional**. 
-Em vez de apenas desenhar caracteres soltos, o cenário é uma matriz onde:
-* `1` representa os segmentos que compõem o corpo da cobra.
-* `0` representa os espaços vazios do cenário.
+Em vez de utilizar uma matriz bidimensional clássica para mapear toda a tela (o que exigiria processar espaços vazios desnecessariamente), o "motor" do jogo foi otimizado utilizando **dois vetores paralelos**: um armazenando as coordenadas X e outro as coordenadas Y do corpo da cobra.
 
-A cada "frame" (ciclo do game loop), a lógica atualiza as posições da matriz, empurrando o corpo da cobra para a próxima coordenada e redesenhando a interface na tela, criando a ilusão de movimento.
+Dessa forma, a lógica do jogo rastreia estritamente os segmentos da cobra:
+* O índice `0` dos vetores representa o **rabo** da cobra.
+* Os índices subsequentes acompanham a extensão do corpo até chegar à cabeça.
+* A cada "frame" (ciclo do game loop), as posições são atualizadas do rabo em direção à cabeça, otimizando a movimentação e simplificando o processo de adição de novos segmentos quando a cobra come uma fruta.
 
 ## 🥚 Easter Egg: "Corbinha"
 
